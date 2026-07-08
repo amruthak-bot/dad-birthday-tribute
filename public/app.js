@@ -634,14 +634,18 @@ document.addEventListener("DOMContentLoaded", () => {
       card.style.zIndex = MEMORIES_DATA.gratitudes.length - index;
 
       card.innerHTML = `
-        <h3>${item.title}</h3>
-        <p class="gratitude-text" style="font-size: 1.25rem; line-height: 1.7; max-height: 290px; overflow-y: auto; text-align: justify; padding: 0 10px;">"${item.text}"</p>
-        <div class="card-audio-controls" style="margin-top: 10px; text-align: center; position: relative; z-index: 10;">
-          <button class="play-voice-btn" data-audio="${item.audio || ''}" style="background: rgba(212, 175, 55, 0.15); border: 1px solid var(--gold); color: var(--gold); padding: 6px 16px; border-radius: 20px; font-family: var(--font-primary); font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 6px;">
-            🔊 Voiceover
-          </button>
+        <div class="gratitude-card-inner">
+          <div class="gratitude-card-header">
+            <h3>${item.title}</h3>
+          </div>
+          <p class="gratitude-text">"${item.text}"</p>
+          <div class="card-audio-controls" style="margin-top: auto; text-align: center; position: relative; z-index: 10; padding: 10px 0;">
+            <button class="play-voice-btn" data-audio="${item.audio || ''}" style="background: rgba(64, 16, 29, 0.06); border: 1px solid var(--burgundy-light); color: var(--burgundy-light); padding: 8px 20px; border-radius: 20px; font-family: var(--font-body); font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px;">
+              🔊 Voiceover
+            </button>
+          </div>
+          <span class="gratitude-signature">- Forever Your Child</span>
         </div>
-        <span class="gratitude-signature" style="margin-top: 5px;">- Forever Your Child</span>
       `;
 
       // Swipe card out on clicking card body
