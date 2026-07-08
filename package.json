@@ -1,0 +1,14 @@
+{
+  "name": "dad-birthday-tribute",
+  "version": "1.0.0",
+  "description": "A premium, dynamic, and interactive Node.js birthday tribute for Dad.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "author": "Antigravity Pair Program",
+  "license": "MIT"
+}

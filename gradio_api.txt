@@ -1,0 +1,36 @@
+Loaded as API: https://kenpath-svara-tts.hf.space
+Client.predict() Usage Info
+---------------------------
+Named API endpoints: 3
+
+ - predict(language, gender, text, temperature, top_p, repetition_penalty, max_new_tokens, api_name="/generate_speech") -> generated_speech
+    Parameters:
+     - [Dropdown] language: Literal['Assamese (অসমীয়া)', 'Bengali (বাংলা)', 'Bhojpuri (भोजपुरी)', 'Bodo (बर’/बड़ो)', 'Chhattisgarhi (छत्तीसगढ़ी)', 'Dogri (डोगरी)', 'Gujarati (ગુજરાતી)', 'Hindi (हिन्दी)', 'Kannada (ಕನ್ನಡ)', 'Maithili (मैथिली)', 'Magahi (मगही)', 'Malayalam (മലയാളം)', 'Marathi (मराठी)', 'Nepali (नेपाली)', 'Punjabi (ਪੰਜਾਬੀ)', 'Sanskrit (संस्कृतम्)', 'Tamil (தமிழ்)', 'Telugu (తెలుగు)', 'English (Indian)'] (not required, defaults to:   Hindi (हिन्दी))  
+     - [Dropdown] gender: Literal['Male', 'Female'] (not required, defaults to:   Female)  
+     - [Textbox] text: str (required)  
+     - [Slider] temperature: float (not required, defaults to:   0.7)  
+     - [Slider] top_p: float (not required, defaults to:   0.8)  
+     - [Slider] repetition_penalty: float (not required, defaults to:   1.1)  
+     - [Slider] max_new_tokens: float (not required, defaults to:   2048)  
+    Returns:
+     - [Audio] generated_speech: filepath 
+
+ - predict(api_name="/randomize") -> (language, gender, text_to_speak)
+    Parameters:
+     - None
+    Returns:
+     - [Dropdown] language: Literal['Assamese (অসমীয়া)', 'Bengali (বাংলা)', 'Bhojpuri (भोजपुरी)', 'Bodo (बर’/बड़ो)', 'Chhattisgarhi (छत्तीसगढ़ी)', 'Dogri (डोगरी)', 'Gujarati (ગુજરાતી)', 'Hindi (हिन्दी)', 'Kannada (ಕನ್ನಡ)', 'Maithili (मैथिली)', 'Magahi (मगही)', 'Malayalam (മലയാളം)', 'Marathi (मराठी)', 'Nepali (नेपाली)', 'Punjabi (ਪੰਜਾਬੀ)', 'Sanskrit (संस्कृतम्)', 'Tamil (தமிழ்)', 'Telugu (తెలుగు)', 'English (Indian)'] 
+     - [Dropdown] gender: Literal['Male', 'Female'] 
+     - [Textbox] text_to_speak: str 
+
+ - predict(api_name="/_clear") -> (text_to_speak, generated_speech, temperature, topp_nucleus_sampling, repetition_penalty, max_new_tokens)
+    Parameters:
+     - None
+    Returns:
+     - [Textbox] text_to_speak: str 
+     - [Audio] generated_speech: filepath 
+     - [Slider] temperature: float (numeric value between 0.3 and 1.2) 
+     - [Slider] topp_nucleus_sampling: float (numeric value between 0.2 and 1.0) 
+     - [Slider] repetition_penalty: float (numeric value between 0.9 and 1.9) 
+     - [Slider] max_new_tokens: float (numeric value between 1000 and 4096) 
+

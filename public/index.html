@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday, Dad | A Gallery of Love</title>
+  
+  <!-- Premium Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Outfit:wght@300;400;500;600&family=Reenie+Beanie&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating Audio Controls -->
+  <div class="audio-controls-container">
+    <button id="music-toggle" class="music-btn">
+      <span class="music-icon">🎵</span>
+      <span class="music-text">Play Melody</span>
+    </button>
+    <button id="mute-all-btn" class="mute-btn">
+      <span class="mute-icon">🔊</span>
+      <span class="mute-text">Mute All</span>
+    </button>
+  </div>
+
+  <!-- 1. WAX-SEALED ENVELOPE INTERACTIVE LOADER -->
+  <div id="envelope-loader" class="envelope-overlay">
+    <div class="envelope-wrapper">
+      <div class="envelope">
+        <div class="envelope-back"></div>
+        <div class="envelope-paper">
+          <div class="envelope-letter-content">
+            <h3>To the Best Dad in the World</h3>
+            <p>This Saturday is a celebration of the man who gave us everything. Click the seal to open your birthday gift.</p>
+            <span class="handwritten-signature">With love, forever</span>
+          </div>
+        </div>
+        <div class="envelope-front"></div>
+        <div class="wax-seal" id="wax-seal">
+          <div class="seal-heart">❤</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN APP CONTAINER -->
+  <div id="app-container" class="hidden-app">
+    
+    <!-- Hero / Header Section -->
+    <header class="hero-header">
+      <div class="hero-bg-glow"></div>
+      <h1 class="fade-in-el">Celebrating You, Dad</h1>
+      <p class="hero-subtitle fade-in-el">A digital scrapbook of memories, gratitude, and everlasting love.</p>
+      <div class="scroll-indicator">
+        <span class="mouse-icon"><span class="wheel"></span></span>
+        <span class="scroll-text">Scroll to start the journey</span>
+      </div>
+    </header>
+
+    <!-- SECTION 1: CHAPTERS OF LIFE (3D Book Scrapbooks) -->
+    <section class="section chapters-section" id="chapters">
+      <div class="section-header">
+        <h2>Chapters of Your Journey</h2>
+        <p>A walk down memory lane through the years. Click on any chapter book to open the scrapbook album.</p>
+      </div>
+      
+      <div class="books-grid" id="books-grid">
+        <!-- Rendered dynamically by app.js from memories.js -->
+      </div>
+    </section>
+
+    <!-- SECTION 2: TACTILE POLAROID DESK -->
+    <section class="section desk-section" id="polaroid-desk">
+      <div class="section-header">
+        <h2>Scatter of Memories</h2>
+        <p>A tactile, physical desk of snapshots. Drag them around, rotate, throw, or double-click to view the story on the back of each Polaroid card.</p>
+        <div class="desk-controls">
+          <label for="chapter-select">Choose Album to Scatter:</label>
+          <select id="chapter-select" class="premium-select">
+            <!-- Populated dynamically -->
+          </select>
+          <button id="scatter-shuffle" class="premium-btn">Shuffle Desk</button>
+        </div>
+      </div>
+
+      <div class="desk-canvas" id="desk-canvas">
+        <div class="desk-wood-grain"></div>
+        <!-- Draggable Polaroids will be populated dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- SECTION 3: GRATITUDE DECK (Cards of Love) -->
+    <section class="section gratitude-section" id="gratitude">
+      <div class="section-header">
+        <h2>Things I Want to Thank You For</h2>
+        <p>A deck of heartfelt letters expressing my love, gratitude, and respect. Click cards to cycle through them.</p>
+      </div>
+
+      <div class="gratitude-deck-wrapper">
+        <div class="gratitude-deck" id="gratitude-deck">
+          <!-- Populated dynamically by app.js from memories.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3.5: THE A TO Z OF APPA (ಅಪ್ಪನ ಪ್ರೀತಿಯ ಅಕ್ಷರಮಾಲೆ) -->
+    <section class="section atoz-section" id="atoz">
+      <div class="section-header">
+        <h2>The A to Z of Appa (ಅಪ್ಪನ A to Z)</h2>
+        <p>Click any letter from A to Z to discover the beautiful qualities and stories that make you our hero in Kannada.</p>
+      </div>
+
+      <div class="atoz-wrapper">
+        <div class="atoz-grid" id="atoz-grid">
+          <!-- Populated dynamically by app.js -->
+        </div>
+      </div>
+
+      <!-- Expanded Letter Details Modal -->
+      <div id="atoz-modal" class="atoz-modal-overlay hidden">
+        <div class="atoz-modal-card">
+          <button id="close-atoz-modal" class="close-atoz-btn" aria-label="Close details">×</button>
+          <div class="atoz-modal-content">
+            <span class="atoz-modal-letter" id="modal-letter">A</span>
+            <h3 class="atoz-modal-title" id="modal-title">Awesome (ಅದ್ಭುತ)</h3>
+            <p class="atoz-modal-text" id="modal-text">ಯಾವಾಗಲೂ ನಮ್ಮ ಸಂತೋಷಕ್ಕೆ ದಾರಿದೀಪವಾದ ಅದ್ಭುತ ವ್ಯಕ್ತಿ ನೀನು.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: WISHING LANTERN CEREMONY (Celebration cake and canvas lanterns) -->
+    <section class="section celebration-section" id="celebration">
+      <div class="section-header">
+        <h2>A Special Birthday Celebration</h2>
+        <p>Blow out the candles on the cake to release the birthday wishes and fill the night sky with glowing lanterns.</p>
+      </div>
+
+      <div class="celebration-container">
+        <!-- Canvas for particle smoke, floating lanterns, and confetti -->
+        <canvas id="celebration-canvas" class="celebration-canvas"></canvas>
+
+        <div class="cake-wrapper">
+          <div class="cake">
+            <div class="plate"></div>
+            <div class="layer layer-bottom"></div>
+            <div class="layer layer-middle"></div>
+            <div class="layer layer-top"></div>
+            <div class="icing"></div>
+            <div class="candles-container" id="candles-container">
+              <!-- Animated clickable candles -->
+              <div class="candle" data-id="1">
+                <div class="flame"></div>
+                <div class="smoke"></div>
+              </div>
+              <div class="candle" data-id="2">
+                <div class="flame"></div>
+                <div class="smoke"></div>
+              </div>
+              <div class="candle" data-id="3">
+                <div class="flame"></div>
+                <div class="smoke"></div>
+              </div>
+              <div class="candle" data-id="4">
+                <div class="flame"></div>
+                <div class="smoke"></div>
+              </div>
+              <div class="candle" data-id="5">
+                <div class="flame"></div>
+                <div class="smoke"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wishes-board hidden" id="wishes-board">
+          <div class="wishes-box">
+            <h2 class="happy-bday-title">Happy Birthday, Dad!</h2>
+            <p class="celebration-text">The lanterns are carrying our love up to the heavens. Write a wish to release a new lantern!</p>
+            <div class="wishes-scroller" id="wishes-scroller">
+              <!-- Dynamically populated list of greetings -->
+            </div>
+            <form id="wish-form" class="wish-form">
+              <input type="text" id="wish-name" placeholder="Your Name" required class="premium-input">
+              <textarea id="wish-text" placeholder="Write a birthday wish for Dad..." required class="premium-input" rows="2"></textarea>
+              <button type="submit" class="premium-btn" style="width:100%; margin-top:10px;">Send Floating Lantern 🏮</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+      <p>Made with all the love in the world for the best dad. Happy Birthday!</p>
+      <span class="copyright">&copy; 2026. Forever your student, forever your child.</span>
+    </footer>
+
+  </div>
+
+  <!-- 3D BOOK ALBUM SCAPBOOK OVERLAY -->
+  <div id="scrapbook-overlay" class="overlay hidden-overlay">
+    <button class="back-button" id="back-scrapbook" aria-label="Back to Chapters">← Back to Chapters</button>
+    <button class="close-overlay" id="close-scrapbook" aria-label="Close Scrapbook">&times;</button>
+    <div class="scrapbook-container">
+      <div class="scrapbook-header">
+        <h2 id="scrapbook-title">Chapter Title</h2>
+        <p id="scrapbook-desc">Chapter Description goes here.</p>
+      </div>
+      <div class="masonry-gallery" id="masonry-gallery">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- FULLSCREEN LIGHTBOX FOR PHOTO STORIES -->
+  <div id="lightbox-overlay" class="overlay hidden-overlay">
+    <button class="back-button" id="back-lightbox" aria-label="Back to Album">← Back to Album</button>
+    <button class="close-overlay" id="close-lightbox" aria-label="Close Lightbox">&times;</button>
+    <div class="lightbox-content">
+      <div class="lightbox-photo-side">
+        <img id="lightbox-img" src="" alt="Zoomed memory">
+      </div>
+      <div class="lightbox-info-side">
+        <span class="lightbox-date" id="lightbox-date">Date</span>
+        <h3 class="lightbox-caption" id="lightbox-caption">Caption</h3>
+        <hr class="gold-divider">
+        <div class="lightbox-story" id="lightbox-story">
+          <p>This is where the story about this particular photo goes. We will explain the details of what was happening here, expressing gratitude for this specific day and moment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script Libraries -->
+  <script src="app.js"></script>
+</body>
+</html>
