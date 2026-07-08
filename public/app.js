@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let globalMuted = false;
 
   // --- SELECTORS ---
-  const envelopeLoader = document.getElementById("envelope-loader");
-  const waxSeal = document.getElementById("wax-seal");
+  const introLoader = document.getElementById("intro-loader");
+  const enterBtn = document.getElementById("enter-btn");
   const appContainer = document.getElementById("app-container");
   const musicToggle = document.getElementById("music-toggle");
   const muteAllBtn = document.getElementById("mute-all-btn");
@@ -311,14 +311,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // --- 2. ENVELOPE OPENING HANDLER ---
-  waxSeal.addEventListener("click", () => {
-    const envelope = document.querySelector(".envelope");
-    envelope.classList.add("open");
-
-    // Fade out screen overlay and transition main site
-    setTimeout(() => {
-      envelopeLoader.classList.add("fade-out");
+  // --- 2. INTRO LOADER HANDLER ---
+  if (enterBtn) {
+    enterBtn.addEventListener("click", () => {
+      // Fade out screen overlay and transition main site
+      introLoader.classList.add("fade-out");
       appContainer.classList.remove("hidden-app");
       
       // Delay minor to let screen shift smoothly
@@ -339,8 +336,8 @@ document.addEventListener("DOMContentLoaded", () => {
           startSynthMelody();
         }
       }, 100);
-    }, 1500);
-  });
+    });
+  }
 
   // --- 3. RENDERING LIFE CHAPTERS (3D BOOKS) ---
   function renderChapters() {
