@@ -188,3 +188,17 @@ footer{flex-direction:column;gap:.7rem}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 .reveal{opacity:1;transform:none}
 }
+
+/* ── Mic button ───────────────────────────────────────────────── */
+.mic-btn{display:block;margin:2rem auto 1rem;border:1px solid var(--gold);border-radius:100px;background:transparent;color:var(--cream);padding:.75rem 1.8rem;cursor:pointer;font-size:.88rem;letter-spacing:.08em;transition:.3s}
+.mic-btn:hover{background:var(--gold);color:var(--ink)}
+.mic-btn.active{background:var(--wine);border-color:var(--wine);color:var(--cream)}
+.mic-btn:disabled{opacity:.45;cursor:default}
+
+/* ── Wish popup (above cake) ──────────────────────────────────── */
+.wish-popup{position:absolute;bottom:115%;left:50%;transform:translateX(-50%) translateY(10px);background:var(--wine-deep);border:1px solid var(--gold);border-radius:14px;padding:1.1rem 1.8rem;font-family:var(--kannada);font-size:1rem;line-height:1.9;color:var(--cream);text-align:center;z-index:20;pointer-events:none;min-width:250px;max-width:340px;white-space:pre-line;opacity:0;transition:opacity .35s ease,transform .35s ease}
+.wish-popup.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── Voiceover icon button ────────────────────────────────────── */
+.icon-button.vo-on{color:var(--gold)}
+.icon-button.vo-off{color:#77666a}
