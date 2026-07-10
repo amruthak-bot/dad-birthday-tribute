@@ -155,3 +155,135 @@ candles.forEach(candle => candle.addEventListener("click", () => {
 }));
 
 if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("reduce-motion");
+
+
+/* ═══════════════════════════════════════════════════════════════
+   CANDLE — tap fallback + microphone blow detection
+   Privacy: only volume level is measured; nothing is recorded.
+═══════════════════════════════════════════════════════════════ */
+
+const KANNADA_WISHES = [
+  "ನಿಮ್ಮ ಜೀವನ ಸದಾ ಆರೋಗ್ಯದಿಂದ\nತುಂಬಿರಲಿ ಪಾಪಾ ♡",
+  "ನಿಮ್ಮ ನಗು ಎಂದಿಗೂ ಮಾಸದಿರಲಿ —\nಆ ನಗುವೇ ನಮ್ಮ ಶಕ್ತಿ ♡",
+  "ಮನಸ್ಸಿಗೆ ನೆಮ್ಮದಿ, ಹೃದಯಕ್ಕೆ\nಸಂತೋಷ ತುಂಬಿರಲಿ ♡",
+  "ನಿಮ್ಮ ಪ್ರತಿಯೊಂದು ಕನಸು\nನನಸಾಗಲಿ ♡",
+  "ಜನ್ಮ ಜನ್ಮಕ್ಕೂ ನೀವೇ\nನಮ್ಮ ಪಾಪಾ ಆಗಿ ಬನ್ನಿ ♡"
+];
+
+const wishPopup = document.getElementById("wishPopup");
+let blownCount = 0;
+let micStream = null;
+let audioCtx = null;
+let analyser = null;
+let micActive = false;
+let blowTimer = null;
+
+function showWish(index) {
+  wishPopup.textContent = KANNADA_WISHES[index];
+  wishPopup.classList.add("show");
+  clearTimeout(wishPopup._hide);
+  wishPopup._hide = setTimeout(() => wishPopup.classList.remove("show"), 3200);
+}
+
+function blowOutNext() {
+  const unblown = candles.filter(c => !c.classList.contains("out"));
+  if (unblown.length === 0) return;
+  const idx = candles.indexOf(unblown[0]);
+  unblown[0].classList.add("out");
+  showWish(idx);
+  blownCount++;
+  if (candles.every(c => c.classList.contains("out"))) {
+    wish.classList.add("show");
+    launchConfetti();
+    stopMic();
+  }
+}
+
+// Tap fallback
+candles.forEach((candle, idx) => candle.addEventListener("click", () => {
+  if (candle.classList.contains("out")) return;
+  candle.classList.add("out");
+  showWish(idx);
+  if (candles.every(c => c.classList.contains("out"))) {
+    wish.classList.add("show");
+    launchConfetti();
+    stopMic();
+  }
+}));
+
+// ── Mic logic ──────────────────────────────────────────────────
+const micBtn = document.getElementById("micBtn");
+
+function stopMic() {
+  micActive = false;
+  if (micStream) { micStream.getTracks().forEach(t => t.stop()); micStream = null; }
+  if (audioCtx) { audioCtx.close(); audioCtx = null; }
+  analyser = null;
+  if (micBtn) { micBtn.textContent = "✅ Candles blown!"; micBtn.classList.remove("active"); micBtn.disabled = true; }
+  // resume background music
+  if (music && music.paused) music.play().catch(() => {});
+}
+
+async function startMic() {
+  try {
+    micStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const source = audioCtx.createMediaStreamSource(micStream);
+    analyser = audioCtx.createAnalyser();
+    analyser.fftSize = 512;
+    source.connect(analyser);
+    micActive = true;
+    if (micBtn) { micBtn.textContent = "🎙️ Listening… blow gently!"; micBtn.classList.add("active"); }
+    // pause music so it doesn't trigger candles
+    if (music && !music.paused) music.pause();
+    detectBlow();
+  } catch (err) {
+    if (micBtn) { micBtn.textContent = "🕯️ Mic blocked — tap the flames instead"; micBtn.disabled = true; }
+  }
+}
+
+function detectBlow() {
+  if (!micActive || !analyser) return;
+  const data = new Uint8Array(analyser.frequencyBinCount);
+  analyser.getByteFrequencyData(data);
+  const avg = data.reduce((a, b) => a + b, 0) / data.length;
+
+  if (avg > 18) {
+    if (!blowTimer) {
+      blowTimer = setTimeout(() => {
+        blowTimer = null;
+        if (micActive) blowOutNext();
+      }, 260); // must sustain for 260ms — filters pops/clicks
+    }
+  } else {
+    clearTimeout(blowTimer);
+    blowTimer = null;
+  }
+
+  if (micActive) requestAnimationFrame(detectBlow);
+}
+
+if (micBtn) {
+  micBtn.addEventListener("click", () => {
+    if (!micActive) startMic();
+  });
+}
+
+/* ── Voiceover toggle ─────────────────────────────────────────── */
+const voiceoverAudio = document.getElementById("voiceoverAudio");
+const voiceoverButton = document.getElementById("voiceoverButton");
+if (voiceoverButton && voiceoverAudio) {
+  voiceoverButton.classList.add("vo-off");
+  voiceoverButton.addEventListener("click", async () => {
+    if (voiceoverAudio.paused) {
+      voiceoverAudio.volume = 0.8;
+      await voiceoverAudio.play().catch(() => {});
+      voiceoverButton.classList.replace("vo-off", "vo-on");
+      voiceoverButton.title = "Voiceover ON";
+    } else {
+      voiceoverAudio.pause();
+      voiceoverButton.classList.replace("vo-on", "vo-off");
+      voiceoverButton.title = "Voiceover OFF";
+    }
+  });
+}
