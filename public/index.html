@@ -32,6 +32,7 @@
       <div class="nav-actions">
         <span>Amarnath · 10 July</span>
         <button id="musicButton" class="icon-button" aria-label="Pause music">♫</button>
+        <button id="voiceoverButton" class="icon-button" aria-label="Toggle voiceover" title="Voiceover">🔊</button>
       </div>
     </nav>
 
@@ -45,7 +46,7 @@
         <h2>To our first hero,<br><em>and favourite person.</em></h2>
         <p class="kannada-lead">ಅಪ್ಪ ಎಂದರೆ ಕೇವಲ ಒಂದು ಪದವಲ್ಲ…<br>ಅದು ನಮ್ಮ ಧೈರ್ಯ, ನಮ್ಮ ನೆಮ್ಮದಿ, ನಮ್ಮ ಮನೆ.</p>
         <p>Papa, we may not say it every day, but we notice every little thing you do for us. Thank you for listening to all our stories, supporting our silly ideas, protecting us and always making us feel that everything will be okay.</p>
-        <div class="signature">With love, Amruta & Hansika</div>
+        <div class="signature">With love, Amrutha & Hansika</div>
       </div>
     </header>
 
@@ -99,7 +100,7 @@
           <p class="letter-to">Papa,</p>
           <p>You believed in me even when I doubted myself. You listened to every new idea, encouraged every small step and always made me feel capable. I may irritate you, argue with you and forget to say it—but I am endlessly proud to be your daughter.</p>
           <p class="kannada-line">ಐ ಲವ್ ಯು ಪಾಪಾ. ನೀವು ನನ್ನ ಮೊದಲ ಹೀರೋ ಮತ್ತು ಯಾವಾಗಲೂ ನನ್ನ ದೊಡ್ಡ ಹೆಮ್ಮೆ.</p>
-          <p class="letter-sign">— Amruta</p>
+          <p class="letter-sign">— Amrutha</p>
         </article>
         <article class="letter reveal">
           <p class="letter-to">Dada,</p>
@@ -115,7 +116,9 @@
       <div class="celebrate-content reveal">
         <p class="eyebrow">ONE BIRTHDAY WISH</p>
         <h2>Make a wish, Papa.</h2>
-        <p>Tap each flame, then see what we have wished for you.</p>
+        <p>Blow out each candle to reveal a wish — or tap the flame as a backup ♡</p>
+        <button id="micBtn" class="mic-btn">🎙️ Allow mic &amp; blow out candles</button>
+        <div id="wishPopup" class="wish-popup" aria-live="polite"></div>
         <div class="cake" id="cake" aria-label="Birthday cake with five candles">
           <div class="candles">
             <button class="candle" aria-label="Blow candle one"><i></i></button>
@@ -140,13 +143,14 @@
         <p class="eyebrow">IN THIS LIFE, AND EVERY LIFE</p>
         <h2>If we could choose again,<br>we would still choose you<br><em>as our Papa.</em></h2>
         <p>We love you, Papa. You are the best dad ever.</p>
-        <div class="signature light">Forever your girls, Amruta & Hansika</div>
+        <div class="signature light">Forever your girls, Amrutha & Hansika</div>
       </div>
     </section>
 
     <footer><span>Made with love for Amarnath</span><span>10 July · Forever our Papa</span></footer>
   </main>
   <audio id="backgroundMusic" src="audio/track1.mp3" loop preload="auto"></audio>
+  <audio id="voiceoverAudio" preload="auto"><source src="audio/voiceover.mp3" type="audio/mpeg"></audio>
   <script src="app.js"></script>
 </body>
 </html>
