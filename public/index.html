@@ -1,233 +1,152 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday, Dad | A Gallery of Love</title>
-  
-  <!-- Premium Typography -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#160c10">
+  <meta name="description" content="A birthday tribute to Amarnath — our Papa, our home.">
+  <title>For Papa — Happy Birthday Amarnath</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Outfit:wght@300;400;500;600&family=Reenie+Beanie&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&family=Italiana&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="grain" aria-hidden="true"></div>
 
-  <!-- Floating Audio Controls -->
-  <div class="audio-controls-container">
-    <button id="music-toggle" class="music-btn">
-      <span class="music-icon">🎵</span>
-      <span class="music-text">Play Melody</span>
-    </button>
-    <button id="mute-all-btn" class="mute-btn">
-      <span class="mute-icon">🔊</span>
-      <span class="mute-text">Mute All</span>
-    </button>
-  </div>
-
-  <!-- 1. PREMIUM INTRO LOADER -->
-  <div id="intro-loader" class="intro-overlay">
-    <div class="intro-particles"></div>
-    <div class="intro-glow"></div>
-    <div class="intro-content">
-      <div class="intro-tag">A Tribute of Love</div>
-      <h1 class="intro-title">ಅಪ್ಪ</h1>
-      <p class="intro-subtitle">To the man who gave us everything.</p>
-      <button id="enter-btn" class="enter-btn"><span>Begin Journey</span></button>
+  <div class="opening" id="opening">
+    <div class="opening-glow"></div>
+    <div class="opening-inner">
+      <p class="eyebrow">10 JULY · A LITTLE SOMETHING FOR YOU</p>
+      <p class="opening-kannada">ನಮ್ಮ ಪ್ರೀತಿಯ</p>
+      <h1>Papa</h1>
+      <p class="opening-copy">For the man whose love made every place feel like home.</p>
+      <button class="open-button" id="openTribute">Open your gift <span>→</span></button>
+      <p class="sound-hint">Best experienced with sound</p>
     </div>
   </div>
 
-  <!-- MAIN APP CONTAINER -->
-  <div id="app-container" class="hidden-app">
-    
-    <!-- Hero / Header Section -->
-    <header class="hero-header">
-      <div class="hero-bg-glow"></div>
-      <h1 class="fade-in-el">Celebrating You, Dad</h1>
-      <p class="hero-subtitle fade-in-el">A digital scrapbook of memories, gratitude, and everlasting love.</p>
-      <div class="scroll-indicator">
-        <span class="mouse-icon"><span class="wheel"></span></span>
-        <span class="scroll-text">Scroll to start the journey</span>
+  <main id="tribute" class="tribute" aria-hidden="true">
+    <nav class="nav">
+      <a href="#home" class="wordmark">For Papa.</a>
+      <div class="nav-actions">
+        <span>Amarnath · 10 July</span>
+        <button id="musicButton" class="icon-button" aria-label="Pause music">♫</button>
+      </div>
+    </nav>
+
+    <header class="hero" id="home">
+      <div class="hero-photo reveal">
+        <img src="images/IMG_20260430_211304000.jpg" alt="Amarnath and his wife smiling together">
+        <span class="photo-note">The smile behind our happiest memories</span>
+      </div>
+      <div class="hero-copy reveal">
+        <p class="eyebrow">HAPPY BIRTHDAY, AMARNATH</p>
+        <h2>Our first hero.<br><em>Our forever home.</em></h2>
+        <p class="kannada-lead">ಅಪ್ಪ ಎಂದರೆ ಕೇವಲ ಒಂದು ಪದವಲ್ಲ…<br>ಅದು ನಮ್ಮ ಧೈರ್ಯ, ನಮ್ಮ ನೆಮ್ಮದಿ, ನಮ್ಮ ಮನೆ.</p>
+        <p>Today is not only about celebrating your birthday. It is about celebrating every quiet sacrifice, every reassuring smile and every time you stood beside us without ever asking for anything in return.</p>
+        <div class="signature">With love, Amruta & Hansika</div>
       </div>
     </header>
 
-    <!-- SECTION 1: CHAPTERS OF LIFE (3D Book Scrapbooks) -->
-    <section class="section chapters-section" id="chapters">
-      <div class="section-header">
-        <h2>Chapters of Your Journey</h2>
-        <p>A walk down memory lane through the years. Click on any chapter book to open the scrapbook album.</p>
+    <section class="manifesto section-pad reveal">
+      <p class="eyebrow">TO THE MAN BEHIND OUR HAPPINESS</p>
+      <blockquote>“You never needed a crown to be our king. You simply held our hands, protected our dreams and showed us what love looks like.”</blockquote>
+      <p class="kannada-line">ನಮ್ಮ ಪ್ರತಿಯೊಂದು ನಗುವಿನ ಹಿಂದೆಯೂ, ನಿಮ್ಮ ಪ್ರೀತಿ ಮತ್ತು ತ್ಯಾಗ ಇದೆ ಪಾಪಾ.</p>
+    </section>
+
+    <section class="chapters section-pad" id="memories">
+      <div class="section-heading reveal">
+        <p class="eyebrow">A LIFE WE LOVE LIVING WITH YOU</p>
+        <h2>Our story, in little moments.</h2>
+        <p>Not every beautiful memory needs a perfect photograph. Some simply remind us how safe and loved we have always been.</p>
       </div>
-      
-      <div class="books-grid" id="books-grid">
-        <!-- Rendered dynamically by app.js from memories.js -->
+      <div id="chapterList"></div>
+    </section>
+
+    <section class="lessons section-pad">
+      <div class="section-heading reveal">
+        <p class="eyebrow">WHAT YOU TAUGHT US</p>
+        <h2>The lessons you lived.</h2>
+      </div>
+      <div class="lesson-grid">
+        <article class="lesson reveal"><span>01</span><h3>Be gentle</h3><p>ನೀವು ಎಂದೂ ಜೋರಾಗಿ ಹೇಳಲಿಲ್ಲ. ಪ್ರೀತಿಯಿಂದಲೇ ಸರಿ–ತಪ್ಪುಗಳನ್ನು ಅರ್ಥ ಮಾಡಿಸಿದ್ದೀರಿ.</p></article>
+        <article class="lesson reveal"><span>02</span><h3>Stand strong</h3><p>ಕಷ್ಟಗಳು ಬಂದಾಗ ಹೆದರದೆ, ಕುಟುಂಬಕ್ಕಾಗಿ ಆಲದ ಮರದಂತೆ ನಿಲ್ಲುವುದನ್ನು ಕಲಿಸಿದ್ದೀರಿ.</p></article>
+        <article class="lesson reveal"><span>03</span><h3>Give quietly</h3><p>ನಿಮ್ಮ ತ್ಯಾಗದ ಬಗ್ಗೆ ಎಂದೂ ಹೇಳಿಕೊಳ್ಳಲಿಲ್ಲ. ಆದರೆ ನಮ್ಮ ಬದುಕೇ ಅದರ ಸಾಕ್ಷಿ.</p></article>
+        <article class="lesson reveal"><span>04</span><h3>Love fully</h3><p>ಪ್ರೀತಿ ಮಾತಿನಲ್ಲಿ ಮಾತ್ರವಲ್ಲ—ಕಾಳಜಿಯಲ್ಲಿ, ಸಮಯದಲ್ಲಿ ಮತ್ತು ಜೊತೆಗಿರುವುದರಲ್ಲಿ ಎಂದು ತೋರಿಸಿದ್ದೀರಿ.</p></article>
       </div>
     </section>
 
-    <!-- SECTION 2: TACTILE POLAROID DESK -->
-    <section class="section desk-section" id="polaroid-desk">
-      <div class="section-header">
-        <h2>Scatter of Memories</h2>
-        <p>A tactile, physical desk of snapshots. Drag them around, rotate, throw, or double-click to view the story on the back of each Polaroid card.</p>
-        <div class="desk-controls">
-          <label for="chapter-select">Choose Album to Scatter:</label>
-          <select id="chapter-select" class="premium-select">
-            <!-- Populated dynamically -->
-          </select>
-          <button id="scatter-shuffle" class="premium-btn">Shuffle Desk</button>
-        </div>
+    <section class="bike-story section-pad">
+      <div class="bike-image reveal">
+        <img src="images/IMG_20230116_174819_285.jpg" alt="Amarnath with his daughters and Royal Enfield">
       </div>
-
-      <div class="desk-canvas" id="desk-canvas">
-        <div class="desk-wood-grain"></div>
-        <!-- Draggable Polaroids will be populated dynamically by app.js -->
+      <div class="bike-copy reveal">
+        <p class="eyebrow">A DREAM, RETURNED WITH LOVE</p>
+        <h2>The day your daughter gave a little back.</h2>
+        <p>During lockdown, Amruta turned her talents into online classes and used what she earned to give you a Royal Enfield. It was never just a bike—it was a daughter’s way of saying, “Your sacrifices became my strength.”</p>
+        <p class="kannada-line">ನೀವು ನಮ್ಮ ಕನಸುಗಳನ್ನು ನನಸು ಮಾಡಿದ್ದೀರಿ. ನಿಮ್ಮ ಒಂದು ಕನಸನ್ನು ನನಸು ಮಾಡುವ ಭಾಗ್ಯ ನನಗೆ ಸಿಕ್ಕಿತು.</p>
       </div>
     </section>
 
-    <!-- SECTION 3: GRATITUDE DECK (Cards of Love) -->
-    <section class="section gratitude-section" id="gratitude">
-      <div class="section-header">
-        <h2>Things I Want to Thank You For</h2>
-        <p>A deck of heartfelt letters expressing my love, gratitude, and respect. Click cards to cycle through them.</p>
+    <section class="letters section-pad" id="letters">
+      <div class="section-heading reveal">
+        <p class="eyebrow">TWO DAUGHTERS · ONE VERY LUCKY FAMILY</p>
+        <h2>Letters for Papa.</h2>
       </div>
-
-      <div class="gratitude-deck-wrapper">
-        <div class="gratitude-deck" id="gratitude-deck">
-          <!-- Populated dynamically by app.js from memories.js -->
-        </div>
+      <div class="letter-grid">
+        <article class="letter reveal">
+          <p class="letter-to">Papa,</p>
+          <p>You believed in me before I knew how to believe in myself. Every little thing I achieve carries a part of your courage, patience and faith. I may not say it every day, but being your daughter is one of the greatest blessings of my life.</p>
+          <p class="kannada-line">ಐ ಲವ್ ಯು ಪಾಪಾ. ನೀವು ನನ್ನ ಮೊದಲ ಹೀರೋ ಮತ್ತು ಯಾವಾಗಲೂ ನನ್ನ ದೊಡ್ಡ ಹೆಮ್ಮೆ.</p>
+          <p class="letter-sign">— Amruta</p>
+        </article>
+        <article class="letter reveal">
+          <p class="letter-to">Dada,</p>
+          <p>Thank you for every laugh, every protected dream and all the ordinary days you made special simply by being there. No matter how much we grow, we will always be your little girls.</p>
+          <p class="kannada-line">ನಿಮ್ಮ ಮಗಳಾಗಿ ಹುಟ್ಟಿರುವುದೇ ನನ್ನ ಅದೃಷ್ಟ. ಯಾವಾಗಲೂ ಹೀಗೆ ನಮ್ಮ ಜೊತೆ ನಗುತ್ತಿರಿ.</p>
+          <p class="letter-sign">— Hansika</p>
+        </article>
       </div>
     </section>
 
-    <!-- SECTION 3.5: THE A TO Z OF APPA (ಅಪ್ಪನ ಪ್ರೀತಿಯ ಅಕ್ಷರಮಾಲೆ) -->
-    <section class="section atoz-section" id="atoz">
-      <div class="section-header">
-        <h2>The A to Z of Appa (ಅಪ್ಪನ A to Z)</h2>
-        <p>Click any letter from A to Z to discover the beautiful qualities and stories that make you our hero in Kannada.</p>
-      </div>
-
-      <div class="atoz-wrapper">
-        <div class="atoz-grid" id="atoz-grid">
-          <!-- Populated dynamically by app.js -->
-        </div>
-      </div>
-
-      <!-- Expanded Letter Details Modal -->
-      <div id="atoz-modal" class="atoz-modal-overlay hidden">
-        <div class="atoz-modal-card">
-          <button id="close-atoz-modal" class="close-atoz-btn" aria-label="Close details">×</button>
-          <div class="atoz-modal-content">
-            <span class="atoz-modal-letter" id="modal-letter">A</span>
-            <h3 class="atoz-modal-title" id="modal-title">Awesome (ಅದ್ಭುತ)</h3>
-            <p class="atoz-modal-text" id="modal-text">ಯಾವಾಗಲೂ ನಮ್ಮ ಸಂತೋಷಕ್ಕೆ ದಾರಿದೀಪವಾದ ಅದ್ಭುತ ವ್ಯಕ್ತಿ ನೀನು.</p>
+    <section class="celebrate section-pad" id="celebrate">
+      <canvas id="confettiCanvas" aria-hidden="true"></canvas>
+      <div class="celebrate-content reveal">
+        <p class="eyebrow">ONE BIRTHDAY WISH</p>
+        <h2>Make a wish, Papa.</h2>
+        <p>Tap each flame, then see what we have wished for you.</p>
+        <div class="cake" id="cake" aria-label="Birthday cake with five candles">
+          <div class="candles">
+            <button class="candle" aria-label="Blow candle one"><i></i></button>
+            <button class="candle" aria-label="Blow candle two"><i></i></button>
+            <button class="candle" aria-label="Blow candle three"><i></i></button>
+            <button class="candle" aria-label="Blow candle four"><i></i></button>
+            <button class="candle" aria-label="Blow candle five"><i></i></button>
           </div>
+          <div class="cake-top"></div><div class="cake-body">PAPA</div><div class="cake-plate"></div>
+        </div>
+        <div class="birthday-wish" id="birthdayWish" aria-live="polite">
+          <p>ನಿಮ್ಮ ಜೀವನ ಸದಾ ಆರೋಗ್ಯ, ನೆಮ್ಮದಿ ಮತ್ತು ಸಂತೋಷದಿಂದ ತುಂಬಿರಲಿ.</p>
+          <h3>Happy Birthday, Papa!</h3>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 4: WISHING LANTERN CEREMONY (Celebration cake and canvas lanterns) -->
-    <section class="section celebration-section" id="celebration">
-      <div class="section-header">
-        <h2>A Special Birthday Celebration</h2>
-        <p>Blow out the candles on the cake to release the birthday wishes and fill the night sky with glowing lanterns.</p>
-      </div>
-
-      <div class="celebration-container">
-        <!-- Canvas for particle smoke, floating lanterns, and confetti -->
-        <canvas id="celebration-canvas" class="celebration-canvas"></canvas>
-
-        <div class="cake-wrapper">
-          <div class="cake">
-            <div class="plate"></div>
-            <div class="layer layer-bottom"></div>
-            <div class="layer layer-middle"></div>
-            <div class="layer layer-top"></div>
-            <div class="icing"></div>
-            <div class="candles-container" id="candles-container">
-              <!-- Animated clickable candles -->
-              <div class="candle" data-id="1">
-                <div class="flame"></div>
-                <div class="smoke"></div>
-              </div>
-              <div class="candle" data-id="2">
-                <div class="flame"></div>
-                <div class="smoke"></div>
-              </div>
-              <div class="candle" data-id="3">
-                <div class="flame"></div>
-                <div class="smoke"></div>
-              </div>
-              <div class="candle" data-id="4">
-                <div class="flame"></div>
-                <div class="smoke"></div>
-              </div>
-              <div class="candle" data-id="5">
-                <div class="flame"></div>
-                <div class="smoke"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="wishes-board hidden" id="wishes-board">
-          <div class="wishes-box">
-            <h2 class="happy-bday-title">Happy Birthday, Dad!</h2>
-            <p class="celebration-text">The lanterns are carrying our love up to the heavens. Write a wish to release a new lantern!</p>
-            <div class="wishes-scroller" id="wishes-scroller">
-              <!-- Dynamically populated list of greetings -->
-            </div>
-            <form id="wish-form" class="wish-form">
-              <input type="text" id="wish-name" placeholder="Your Name" required class="premium-input">
-              <textarea id="wish-text" placeholder="Write a birthday wish for Dad..." required class="premium-input" rows="2"></textarea>
-              <button type="submit" class="premium-btn" style="width:100%; margin-top:10px;">Send Floating Lantern 🏮</button>
-            </form>
-          </div>
-        </div>
+    <section class="finale">
+      <img src="images/IMG_20260411_222452099.jpg" alt="Amarnath with his family">
+      <div class="finale-overlay"></div>
+      <div class="finale-copy reveal">
+        <p class="eyebrow">IN THIS LIFE, AND EVERY LIFE</p>
+        <h2>If we could choose again,<br>we would still choose you<br><em>as our Papa.</em></h2>
+        <p>We love you, Papa. You are the best dad ever.</p>
+        <div class="signature light">Forever your girls, Amruta & Hansika</div>
       </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="main-footer">
-      <p>Made with all the love in the world for the best dad. Happy Birthday!</p>
-      <span class="copyright">&copy; 2026. Forever your student, forever your child.</span>
-    </footer>
-
-  </div>
-
-  <!-- 3D BOOK ALBUM SCAPBOOK OVERLAY -->
-  <div id="scrapbook-overlay" class="overlay hidden-overlay">
-    <button class="back-button" id="back-scrapbook" aria-label="Back to Chapters">← Back to Chapters</button>
-    <button class="close-overlay" id="close-scrapbook" aria-label="Close Scrapbook">&times;</button>
-    <div class="scrapbook-container">
-      <div class="scrapbook-header">
-        <h2 id="scrapbook-title">Chapter Title</h2>
-        <p id="scrapbook-desc">Chapter Description goes here.</p>
-      </div>
-      <div class="masonry-gallery" id="masonry-gallery">
-        <!-- Rendered dynamically -->
-      </div>
-    </div>
-  </div>
-
-  <!-- FULLSCREEN LIGHTBOX FOR PHOTO STORIES -->
-  <div id="lightbox-overlay" class="overlay hidden-overlay">
-    <button class="back-button" id="back-lightbox" aria-label="Back to Album">← Back to Album</button>
-    <button class="close-overlay" id="close-lightbox" aria-label="Close Lightbox">&times;</button>
-    <div class="lightbox-content">
-      <div class="lightbox-photo-side">
-        <img id="lightbox-img" src="" alt="Zoomed memory">
-      </div>
-      <div class="lightbox-info-side">
-        <span class="lightbox-date" id="lightbox-date">Date</span>
-        <h3 class="lightbox-caption" id="lightbox-caption">Caption</h3>
-        <hr class="gold-divider">
-        <div class="lightbox-story" id="lightbox-story">
-          <p>This is where the story about this particular photo goes. We will explain the details of what was happening here, expressing gratitude for this specific day and moment.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Script Libraries -->
+    <footer><span>Made with love for Amarnath</span><span>10 July · Forever our Papa</span></footer>
+  </main>
+  <audio id="backgroundMusic" src="audio/track1.mp3" loop preload="auto"></audio>
   <script src="app.js"></script>
 </body>
 </html>
