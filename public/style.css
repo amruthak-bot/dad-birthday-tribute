@@ -29,11 +29,11 @@ img{display:block;width:100%}
 .icon-button{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;background:#281218aa;color:var(--gold);cursor:pointer}
 .icon-button.paused{color:#77666a}
 .hero{min-height:100svh;display:grid;grid-template-columns:minmax(280px,.85fr) minmax(320px,1fr);align-items:center;gap:clamp(3rem,8vw,9rem);max-width:1440px;margin:auto;padding:clamp(8rem,13vw,12rem) clamp(1.5rem,7vw,7rem) 7rem}
-.hero-photo{position:relative}
+.hero-photo{position:relative;display:flex;flex-direction:column;align-items:center}
 .hero-photo:before{content:"";position:absolute;inset:-16px 14px 16px -14px;background:#f4e6d8;transform:rotate(-2deg);z-index:-1;box-shadow:0 22px 60px rgba(0,0,0,.28)}
 .hero-photo:after{content:"";position:absolute;top:-24px;left:50%;width:110px;height:34px;background:rgba(232,210,177,.72);transform:translateX(-50%) rotate(2deg);box-shadow:0 2px 8px rgba(0,0,0,.12)}
-.hero-photo img{height:min(68vh,720px);object-fit:cover;object-position:center;border-radius:18px;filter:saturate(.92) contrast(1.02)}
-.photo-note{display:block;margin-top:1rem;color:#d9bcb3;font-family:var(--hand);font-size:1.6rem;text-align:center}
+.hero-photo img{width:100%;height:min(68vh,720px);object-fit:cover;object-position:center top;border-radius:18px;filter:saturate(.92) contrast(1.02)}
+.photo-note{display:block;margin-top:1.4rem;padding-top:.2rem;color:#d9bcb3;font-family:var(--hand);font-size:1.6rem;text-align:center;position:relative;z-index:2}
 .hero-copy h2,.section-heading h2,.bike-copy h2,.celebrate h2{font-family:var(--serif);font-weight:400}
 .hero-copy h2{font-size:clamp(3.5rem,6vw,6.5rem);line-height:.97;margin:1rem 0 2rem}
 .hero-copy em,.finale-copy em{color:var(--gold);font-weight:400}
@@ -62,9 +62,9 @@ img{display:block;width:100%}
 .memory-card:nth-child(2){grid-column:span 4}
 .memory-card:nth-child(n+7){grid-column:span 6}
 .memory-card.memory-wide{grid-column:span 8}
-.memory-card img{height:340px;object-fit:cover;object-position:center;transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .6s;filter:saturate(.92)}
-.memory-card.memory-wide img,.memory-card:nth-child(2) img{height:520px}
-.memory-card:nth-child(n+7) img{height:420px}
+.memory-card img{height:380px;object-fit:cover;object-position:top center;transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .6s;filter:saturate(.92)}
+.memory-card.memory-wide img,.memory-card:nth-child(2) img{height:560px;object-position:top center}
+.memory-card:nth-child(n+7) img{height:440px;object-position:top center}
 .memory-card:hover img{transform:scale(1.025);filter:saturate(1)}
 .memory-card>span{position:absolute;inset:auto 0 0;padding:4rem 1.2rem 1.2rem;color:#fff;background:linear-gradient(transparent,rgba(14,8,10,.86));font-family:var(--kannada);font-size:.88rem;line-height:1.65;transform:translateY(5px);transition:.3s}
 .memory-card small{display:block;margin-bottom:.3rem;color:#e5c884;font-family:var(--sans);font-size:.62rem;letter-spacing:.14em}
@@ -238,4 +238,75 @@ footer{flex-direction:column;gap:.7rem}
   text-transform:uppercase;
   color:var(--gold);
   margin-bottom:0.9rem;
+}
+
+
+/* ── Scroll progress bar ─────────────────────────────────────── */
+#scrollBar{
+  position:fixed;top:0;left:0;height:3px;width:0%;
+  background:linear-gradient(90deg,var(--wine),var(--gold));
+  z-index:9999;pointer-events:none;
+  transition:width .1s linear;
+  border-radius:0 2px 2px 0;
+}
+
+/* ── Heartbeat love badge ────────────────────────────────────── */
+#loveBadge{
+  position:fixed;bottom:2rem;right:1.5rem;z-index:200;
+  width:64px;height:64px;border-radius:50%;
+  background:var(--wine);
+  border:2px solid var(--gold);
+  display:grid;place-items:center;
+  font-size:1.6rem;cursor:pointer;
+  box-shadow:0 4px 24px rgba(111,41,64,.5);
+  animation:heartbeat 2s ease-in-out infinite;
+  text-decoration:none;
+  transition:transform .2s;
+}
+#loveBadge:hover{transform:scale(1.12)}
+@keyframes heartbeat{
+  0%,100%{box-shadow:0 4px 24px rgba(111,41,64,.5)}
+  50%{box-shadow:0 4px 40px rgba(216,182,108,.65)}
+}
+
+/* ── Secret hug burst ────────────────────────────────────────── */
+.hug-burst{
+  position:fixed;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-size:5rem;z-index:9999;
+  pointer-events:none;opacity:0;
+  animation:hugPop .9s forwards;
+}
+@keyframes hugPop{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.4)}
+  40%{opacity:1;transform:translate(-50%,-50%) scale(1.2)}
+  70%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  100%{opacity:0;transform:translate(-50%,-60%) scale(.9)}
+}
+
+/* ── Candle pre-blow glow pulse ──────────────────────────────── */
+.candle:not(.out) i{
+  animation:flamePulse 1.4s ease-in-out infinite alternate;
+}
+@keyframes flamePulse{
+  from{filter:drop-shadow(0 0 4px #ffb347) drop-shadow(0 0 8px #ff7f00)}
+  to{filter:drop-shadow(0 0 12px #ffe066) drop-shadow(0 0 22px #ffb347)}
+}
+
+/* ── "Years of love" counter in hero ────────────────────────────*/
+.years-counter{
+  display:inline-flex;align-items:center;gap:.6rem;
+  margin-top:1.8rem;
+  padding:.6rem 1.4rem;
+  border:1px solid var(--line);
+  border-radius:100px;
+  font-size:.78rem;letter-spacing:.1em;
+  color:var(--gold);text-transform:uppercase;
+  background:rgba(216,182,108,.07);
+}
+.years-counter strong{font-size:1.1rem;font-family:var(--serif);font-weight:400}
+
+/* ── Memory card caption always visible (not just on hover) ─── */
+.memory-card>span{
+  transform:translateY(0)!important;
 }
