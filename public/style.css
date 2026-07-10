@@ -35,7 +35,7 @@ img{display:block;width:100%}
 .hero-photo img{width:100%;height:min(68vh,720px);object-fit:cover;object-position:center top;border-radius:18px;filter:saturate(.92) contrast(1.02)}
 .photo-note{display:block;margin-top:1.4rem;padding-top:.2rem;color:#d9bcb3;font-family:var(--hand);font-size:1.6rem;text-align:center;position:relative;z-index:2}
 .hero-copy h2,.section-heading h2,.bike-copy h2,.celebrate h2{font-family:var(--serif);font-weight:400}
-.hero-copy h2{font-size:clamp(3.5rem,6vw,6.5rem);line-height:.97;margin:1rem 0 2rem}
+.hero-copy h2{font-size:clamp(3.5rem,6vw,6.5rem);line-height:.97;margin:1rem 0 2rem;overflow-wrap:break-word;word-break:break-word}
 .hero-copy em,.finale-copy em{color:var(--gold);font-weight:400}
 .hero-copy>p:last-of-type{max-width:590px;color:#c5b6b0;line-height:1.85}
 .kannada-lead{font-family:var(--kannada);font-size:clamp(1.1rem,2vw,1.35rem);line-height:2;color:#e9dccc}
@@ -137,7 +137,7 @@ footer{display:flex;justify-content:space-between;padding:2rem clamp(1.3rem,4vw,
 .hero{padding-top:8rem}
 .hero-photo{max-width:620px}
 .hero-photo img{height:68vh}
-.hero-copy h2{font-size:clamp(3.5rem,12vw,6rem)}
+.hero-copy h2{font-size:clamp(2.2rem,9vw,3.8rem)}
 .lesson-grid{grid-template-columns:1fr 1fr}
 .lesson:nth-child(2){border-right:0}
 .lesson:nth-child(-n+2){border-bottom:1px solid var(--line)}
