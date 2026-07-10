@@ -305,3 +305,49 @@ if (voiceoverButton && voiceoverAudio) {
 
 if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
   document.documentElement.classList.add("reduce-motion");
+
+
+/* ══ SURPRISE EXTRAS ══════════════════════════════════════════ */
+
+/* Scroll progress bar */
+const scrollBar = document.getElementById("scrollBar");
+if (scrollBar) {
+  window.addEventListener("scroll", () => {
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    scrollBar.style.width = Math.min(pct, 100) + "%";
+  }, { passive: true });
+}
+
+/* Years-of-love counter — Papa's birthday is 10 July */
+(function() {
+  const el = document.getElementById("yearsCount");
+  if (!el) return;
+  const now = new Date();
+  // Assume daughters are approx 24 & 20 — Papa has been their hero since eldest was born
+  // Use eldest daughter's rough birth year (2002) as "hero since"
+  const heroSince = new Date(2002, 6, 10); // 10 July 2002
+  const years = Math.floor((now - heroSince) / (365.25 * 24 * 3600 * 1000));
+  el.textContent = years;
+})();
+
+/* Secret Easter egg — click the wordmark 3 times for a hug burst */
+(function() {
+  const logo = document.querySelector(".wordmark");
+  if (!logo) return;
+  let clicks = 0, timer;
+  logo.addEventListener("click", e => {
+    e.preventDefault();
+    clicks++;
+    clearTimeout(timer);
+    if (clicks >= 3) {
+      clicks = 0;
+      const msgs = ["ಐ ಲವ್ ಯು ಪಾಪಾ 💛", "ನಮ್ಮ ಹೀರೋ ♡", "Happy Birthday! 🎂"];
+      const burst = document.createElement("div");
+      burst.className = "hug-burst";
+      burst.textContent = msgs[Math.floor(Math.random() * msgs.length)];
+      document.body.appendChild(burst);
+      setTimeout(() => burst.remove(), 1000);
+    }
+    timer = setTimeout(() => { clicks = 0; }, 800);
+  });
+})();
