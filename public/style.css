@@ -50,7 +50,7 @@ img{display:block;width:100%}
 .chapters{background:var(--cream);color:var(--ink)}
 .chapters .eyebrow{color:var(--wine)}
 .chapters .section-heading>p:last-child{color:#6e5f5a}
-.chapter{padding:clamp(4rem,9vw,9rem) 0;border-top:1px solid #d6c8bb}
+.chapter{padding:clamp(4rem,6vw,6rem) 0;border-top:1px solid #d6c8bb}
 .chapter-intro{position:relative;display:grid;grid-template-columns:100px 1fr;gap:2rem;max-width:860px;margin-bottom:3rem;padding-right:8rem}
 .chapter-intro:after{content:"♡  memories with Papa";position:absolute;right:0;top:1.5rem;color:#a26172;font-family:var(--hand);font-size:1.45rem;transform:rotate(-4deg)}
 .chapter-intro>span{font-family:var(--serif);font-size:3rem;color:var(--wine)}
@@ -68,6 +68,7 @@ img{display:block;width:100%}
 .memory-card:hover img{transform:scale(1.025);filter:saturate(1)}
 .memory-card>span{position:absolute;inset:auto 0 0;padding:4rem 1.2rem 1.2rem;color:#fff;background:linear-gradient(transparent,rgba(14,8,10,.86));font-family:var(--kannada);font-size:.88rem;line-height:1.65;transform:translateY(5px);transition:.3s}
 .memory-card small{display:block;margin-bottom:.3rem;color:#e5c884;font-family:var(--sans);font-size:.62rem;letter-spacing:.14em}
+.chapter-note{width:fit-content;max-width:90%;margin:2.8rem auto 0;padding:.45rem 1.5rem;color:#8b4f60;font-family:var(--hand);font-size:clamp(1.45rem,2.2vw,2rem);text-align:center;border-bottom:1px solid rgba(111,41,64,.2);transform:rotate(-1deg)}
 .lessons{background:#3a1924}
 .lessons .section-heading{margin-left:auto;text-align:right}
 .lesson-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}

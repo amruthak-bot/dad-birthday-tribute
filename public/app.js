@@ -2,6 +2,7 @@ const chapters = [
   {
     number: "01", title: "Where our story began", subtitle: "ನಮ್ಮ ಮನೆಯ ಬೇರುಗಳು",
     text: "From tiny daughters sitting beside you to the girls we are today—you have been there in every version of us.",
+    note: "No matter how tall we grow, we will always be your little girls ♡",
     photos: [
       ["IMG20180413220212.jpg", "ನಮ್ಮ ಪುಟ್ಟ ಜಗತ್ತಿನ ದೊಡ್ಡ ಹೀರೋ"],
       ["IMG_20210709_222511_1.png", "ಅಪ್ಪನ ಮಡಿಲಲ್ಲಿ ಯಾವಾಗಲೂ ನೆಮ್ಮದಿ"],
@@ -16,6 +17,7 @@ const chapters = [
   {
     number: "02", title: "The love that built our home", subtitle: "ಅಪ್ಪ–ಅಮ್ಮ, ನಮ್ಮ ಮನೆಯ ಹೃದಯ",
     text: "Your love with Amma is in the small things—the teasing, the smiles, the arguments and always choosing each other again.",
+    note: "Amma + Papa — the team that made our house feel like home ♡",
     photos: [
       ["20241103_205203(0).jpg", "ಒಟ್ಟಿಗಿರುವ ನಗು—ನಮ್ಮ ಮನೆಯ ಸೌಂದರ್ಯ"],
       ["20250211_133944.jpg", "ನಿಮ್ಮ ಜೊತೆ ಪ್ರತಿಯೊಂದು ದಿನವೂ ಒಂದು ಹೊಸ ನೆನಪು"],
@@ -30,6 +32,7 @@ const chapters = [
   {
     number: "03", title: "Celebrations, chaos & us", subtitle: "ನಮ್ಮ ಕುಟುಂಬ, ನಮ್ಮ ಸಂತೋಷ",
     text: "We never need a big occasion. If you, Amma and both of us are together, even an ordinary day becomes a memory.",
+    note: "Our loud, imperfect and very happy little family ♡",
     photos: [
       ["1737611304331.jpg", "ಕುಟುಂಬವೇ ನಿಮ್ಮ ದೊಡ್ಡ ಸಂಪತ್ತು"],
       ["20241116_193205.jpg", "ನಮ್ಮ ಸಂಭ್ರಮಕ್ಕೆ ನಿಮ್ಮ ನಗುವೇ ಪೂರ್ಣತೆ"],
@@ -44,6 +47,7 @@ const chapters = [
   {
     number: "04", title: "Miles, smiles & memories", subtitle: "ಒಟ್ಟಿಗೆ ನಡೆದ ಸುಂದರ ದಾರಿಗಳು",
     text: "Every trip with you means photos, laughter, little fights, food stops and stories that we keep talking about long after coming home.",
+    note: "Next family trip soon, Papa? Your girls are always ready! ♡",
     photos: [
       ["00001IMG_00001_BURST1780201364260_COVER.jpg", "ದಾರಿ ಯಾವುದೇ ಇರಲಿ, ನಿಮ್ಮ ಜೊತೆ ಇದ್ದರೆ ಸಾಕು"],
       ["IMG_20260530_111515421.jpg", "ಪ್ರಕೃತಿಯ ನಡುವೆ ನಮ್ಮ favourite people"],
@@ -70,7 +74,8 @@ chapters.forEach((chapter, chapterIndex) => {
     </button>`).join("");
   article.innerHTML = `
     <div class="chapter-intro reveal"><span>${chapter.number}</span><div><p>${chapter.subtitle}</p><h3>${chapter.title}</h3><p>${chapter.text}</p></div></div>
-    <div class="memory-grid">${photos}</div>`;
+    <div class="memory-grid">${photos}</div>
+    <p class="chapter-note reveal">${escapeHTML(chapter.note)}</p>`;
   chapterList.appendChild(article);
 });
 
