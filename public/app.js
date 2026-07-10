@@ -323,9 +323,9 @@ if (scrollBar) {
   const el = document.getElementById("yearsCount");
   if (!el) return;
   const now = new Date();
-  // Assume daughters are approx 24 & 20 — Papa has been their hero since eldest was born
-  // Use eldest daughter's rough birth year (2002) as "hero since"
-  const heroSince = new Date(2002, 6, 10); // 10 July 2002
+  // Assume daughters are approx 19 & 15 — Papa has been their hero since eldest was born
+  // Use eldest daughter's rough birth year (2007) as "hero since"
+  const heroSince = new Date(2007, 6, 10); // 10 July 2007
   const years = Math.floor((now - heroSince) / (365.25 * 24 * 3600 * 1000));
   el.textContent = years;
 })();
