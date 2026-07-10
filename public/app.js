@@ -150,54 +150,79 @@ function launchConfetti() {
 }
 
 /* ═══════════════════════════════════════════════════════════════════
-   CANDLE — mic blow detection + tap fallback + Kannada wish popups
-   Privacy: only volume level is measured; nothing is recorded/saved.
+   CANDLE — 4 candles, one-by-one, mic blow + tap fallback
+   Privacy: only volume level checked; nothing recorded or saved.
 ═══════════════════════════════════════════════════════════════════ */
 
 const KANNADA_WISHES = [
-  "ನಿಮ್ಮ ಜೀವನ ಸದಾ ಆರೋಗ್ಯದಿಂದ\nತುಂಬಿರಲಿ ಪಾಪಾ ♡",
-  "ನಿಮ್ಮ ನಗು ಎಂದಿಗೂ ಮಾಸದಿರಲಿ —\nಆ ನಗುವೇ ನಮ್ಮ ಶಕ್ತಿ ♡",
-  "ಮನಸ್ಸಿಗೆ ನೆಮ್ಮದಿ, ಹೃದಯಕ್ಕೆ\nಸಂತೋಷ ತುಂಬಿರಲಿ ♡",
-  "ನಿಮ್ಮ ಪ್ರತಿಯೊಂದು ಕನಸು\nನನಸಾಗಲಿ ♡",
-  "ಜನ್ಮ ಜನ್ಮಕ್ಕೂ ನೀವೇ\nನಮ್ಮ ಪಾಪಾ ಆಗಿ ಬನ್ನಿ ♡"
+  "ನಿಮ್ಮ ಜೀವನ ಸದಾ\nಆರೋಗ್ಯದಿಂದ ತುಂಬಿರಲಿ ♡",
+  "ನಿಮ್ಮ ನಗು ಎಂದಿಗೂ\nಮಾಸದಿರಲಿ ♡",
+  "ಮನಸ್ಸಿಗೆ ನೆಮ್ಮದಿ,\nಹೃದಯಕ್ಕೆ ಸಂತೋಷ ♡",
+  "ಜನ್ಮ ಜನ್ಮಕ್ಕೂ ನೀವೇ\nನಮ್ಮ ಪಾಪಾ ♡"
 ];
 
-const wishPopup = document.getElementById("wishPopup");
+const wishPopup    = document.getElementById("wishPopup");
+const micBtn       = document.getElementById("micBtn");
 let micStream = null, audioCtx = null, analyser = null;
 let micActive = false, blowTimer = null;
+let popupBusy = false;   // true while a wish is visible — prevents rapid-fire
+let nextCandleIndex = 0; // tracks which candle is next
 
-function showWish(index) {
-  if (!wishPopup) return;
-  wishPopup.textContent = KANNADA_WISHES[index];
+// candles is already defined above
+// wish  is already defined above (birthdayWish div)
+
+/* ── Show wish popup ──────────────────────────────────────────── */
+function showWish(index, onDone) {
+  if (!wishPopup) { if (onDone) onDone(); return; }
+  popupBusy = true;
+  wishPopup.innerHTML = '<span class="wish-label">🕯 ಶುಭಾಶಯ</span>' + KANNADA_WISHES[index];
   wishPopup.classList.add("show");
   clearTimeout(wishPopup._hide);
-  wishPopup._hide = setTimeout(() => wishPopup.classList.remove("show"), 3400);
+  wishPopup._hide = setTimeout(() => {
+    wishPopup.classList.remove("show");
+    setTimeout(() => {
+      popupBusy = false;
+      if (onDone) onDone();
+    }, 450); // wait for fade-out transition
+  }, 3600);
 }
 
-function blowOutNext() {
+/* ── Blow out ONE candle at nextCandleIndex ───────────────────── */
+function blowNextCandle() {
+  if (popupBusy) return;                  // still showing a wish
   const unblown = candles.filter(c => !c.classList.contains("out"));
   if (!unblown.length) return;
-  const idx = candles.indexOf(unblown[0]);
-  unblown[0].classList.add("out");
-  showWish(idx);
-  if (candles.every(c => c.classList.contains("out"))) {
-    wish.classList.add("show");
-    launchConfetti();
-    stopMic();
-  }
-}
 
-/* ── Tap fallback (always works) ──────────────────────────────── */
-candles.forEach((candle, idx) => {
-  candle.addEventListener("click", () => {
-    if (candle.classList.contains("out")) return;
-    candle.classList.add("out");
-    showWish(idx);
-    if (candles.every(c => c.classList.contains("out"))) {
+  const candle = unblown[0];
+  const idx    = candles.indexOf(candle);
+  candle.classList.add("out");
+
+  const allDone = candles.every(c => c.classList.contains("out"));
+
+  showWish(idx, () => {
+    if (allDone) {
       wish.classList.add("show");
       launchConfetti();
       stopMic();
     }
+    // After popup clears, mic is free to detect the next blow
+  });
+}
+
+/* ── Tap fallback — one candle per tap ────────────────────────── */
+candles.forEach((candle, idx) => {
+  candle.addEventListener("click", () => {
+    if (candle.classList.contains("out")) return;
+    if (popupBusy) return;               // wait for popup to clear
+    candle.classList.add("out");
+    const allDone = candles.every(c => c.classList.contains("out"));
+    showWish(idx, () => {
+      if (allDone) {
+        wish.classList.add("show");
+        launchConfetti();
+        stopMic();
+      }
+    });
   });
 });
 
@@ -209,35 +234,39 @@ function stopMic() {
   if (micStream) { micStream.getTracks().forEach(t => t.stop()); micStream = null; }
   if (audioCtx)  { audioCtx.close(); audioCtx = null; }
   analyser = null;
-  const mb = document.getElementById("micBtn");
-  if (mb) { mb.textContent = "✅ Candles blown!"; mb.classList.remove("active"); mb.disabled = true; }
+  if (micBtn) {
+    micBtn.textContent = "✅ All done!";
+    micBtn.classList.remove("active");
+    micBtn.disabled = true;
+  }
   if (music && music.paused) music.play().catch(() => {});
 }
 
-/* ── Mic: blow detection loop ─────────────────────────────────── */
+/* ── Mic: detect blow loop ────────────────────────────────────── */
 function detectBlow() {
   if (!micActive || !analyser) return;
   const data = new Uint8Array(analyser.frequencyBinCount);
   analyser.getByteFrequencyData(data);
   const avg = data.reduce((a, b) => a + b, 0) / data.length;
 
-  if (avg > 16) {
+  if (avg > 16 && !popupBusy) {
     if (!blowTimer) {
       blowTimer = setTimeout(() => {
         blowTimer = null;
-        if (micActive) blowOutNext();
-      }, 240);
+        if (micActive && !popupBusy) blowNextCandle();
+      }, 250);
     }
   } else {
-    clearTimeout(blowTimer);
-    blowTimer = null;
+    if (!popupBusy) {           // only clear timer when not in popup window
+      clearTimeout(blowTimer);
+      blowTimer = null;
+    }
   }
   if (micActive) requestAnimationFrame(detectBlow);
 }
 
 /* ── Mic: start ───────────────────────────────────────────────── */
 async function startMic() {
-  const mb = document.getElementById("micBtn");
   try {
     micStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
     audioCtx  = new (window.AudioContext || window.webkitAudioContext)();
@@ -246,18 +275,15 @@ async function startMic() {
     analyser.fftSize = 512;
     src.connect(analyser);
     micActive = true;
-    if (mb) { mb.textContent = "🎙️ Listening… blow gently!"; mb.classList.add("active"); }
+    if (micBtn) { micBtn.textContent = "🎙️ Listening… blow gently!"; micBtn.classList.add("active"); }
     if (music && !music.paused) music.pause();
     detectBlow();
   } catch (err) {
-    if (mb) { mb.textContent = "🕯️ Mic blocked — tap the flames instead"; mb.disabled = true; }
+    if (micBtn) { micBtn.textContent = "🕯️ Mic unavailable — tap the flames"; micBtn.disabled = true; }
   }
 }
 
-const micBtn = document.getElementById("micBtn");
-if (micBtn) {
-  micBtn.addEventListener("click", () => { if (!micActive) startMic(); });
-}
+if (micBtn) micBtn.addEventListener("click", () => { if (!micActive) startMic(); });
 
 /* ── Voiceover toggle ─────────────────────────────────────────── */
 const voiceoverAudio  = document.getElementById("voiceoverAudio");
@@ -268,11 +294,11 @@ if (voiceoverButton && voiceoverAudio) {
       voiceoverAudio.volume = 0.85;
       await voiceoverAudio.play().catch(() => {});
       voiceoverButton.textContent = "🔇";
-      voiceoverButton.title = "Voiceover ON — click to stop";
+      voiceoverButton.title = "Voiceover ON";
     } else {
       voiceoverAudio.pause();
       voiceoverButton.textContent = "🔊";
-      voiceoverButton.title = "Voiceover OFF — click to play";
+      voiceoverButton.title = "Voiceover";
     }
   });
 }
