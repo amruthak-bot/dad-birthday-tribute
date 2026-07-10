@@ -149,18 +149,10 @@ function launchConfetti() {
   draw();
 }
 
-candles.forEach(candle => candle.addEventListener("click", () => {
-  candle.classList.add("out");
-  if (candles.every(item => item.classList.contains("out"))) { wish.classList.add("show"); launchConfetti(); }
-}));
-
-if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("reduce-motion");
-
-
-/* ═══════════════════════════════════════════════════════════════
-   CANDLE — tap fallback + microphone blow detection
-   Privacy: only volume level is measured; nothing is recorded.
-═══════════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════════
+   CANDLE — mic blow detection + tap fallback + Kannada wish popups
+   Privacy: only volume level is measured; nothing is recorded/saved.
+═══════════════════════════════════════════════════════════════════ */
 
 const KANNADA_WISHES = [
   "ನಿಮ್ಮ ಜೀವನ ಸದಾ ಆರೋಗ್ಯದಿಂದ\nತುಂಬಿರಲಿ ಪಾಪಾ ♡",
@@ -171,27 +163,23 @@ const KANNADA_WISHES = [
 ];
 
 const wishPopup = document.getElementById("wishPopup");
-let blownCount = 0;
-let micStream = null;
-let audioCtx = null;
-let analyser = null;
-let micActive = false;
-let blowTimer = null;
+let micStream = null, audioCtx = null, analyser = null;
+let micActive = false, blowTimer = null;
 
 function showWish(index) {
+  if (!wishPopup) return;
   wishPopup.textContent = KANNADA_WISHES[index];
   wishPopup.classList.add("show");
   clearTimeout(wishPopup._hide);
-  wishPopup._hide = setTimeout(() => wishPopup.classList.remove("show"), 3200);
+  wishPopup._hide = setTimeout(() => wishPopup.classList.remove("show"), 3400);
 }
 
 function blowOutNext() {
   const unblown = candles.filter(c => !c.classList.contains("out"));
-  if (unblown.length === 0) return;
+  if (!unblown.length) return;
   const idx = candles.indexOf(unblown[0]);
   unblown[0].classList.add("out");
   showWish(idx);
-  blownCount++;
   if (candles.every(c => c.classList.contains("out"))) {
     wish.classList.add("show");
     launchConfetti();
@@ -199,91 +187,95 @@ function blowOutNext() {
   }
 }
 
-// Tap fallback
-candles.forEach((candle, idx) => candle.addEventListener("click", () => {
-  if (candle.classList.contains("out")) return;
-  candle.classList.add("out");
-  showWish(idx);
-  if (candles.every(c => c.classList.contains("out"))) {
-    wish.classList.add("show");
-    launchConfetti();
-    stopMic();
-  }
-}));
+/* ── Tap fallback (always works) ──────────────────────────────── */
+candles.forEach((candle, idx) => {
+  candle.addEventListener("click", () => {
+    if (candle.classList.contains("out")) return;
+    candle.classList.add("out");
+    showWish(idx);
+    if (candles.every(c => c.classList.contains("out"))) {
+      wish.classList.add("show");
+      launchConfetti();
+      stopMic();
+    }
+  });
+});
 
-// ── Mic logic ──────────────────────────────────────────────────
-const micBtn = document.getElementById("micBtn");
-
+/* ── Mic: stop ────────────────────────────────────────────────── */
 function stopMic() {
   micActive = false;
+  clearTimeout(blowTimer);
+  blowTimer = null;
   if (micStream) { micStream.getTracks().forEach(t => t.stop()); micStream = null; }
-  if (audioCtx) { audioCtx.close(); audioCtx = null; }
+  if (audioCtx)  { audioCtx.close(); audioCtx = null; }
   analyser = null;
-  if (micBtn) { micBtn.textContent = "✅ Candles blown!"; micBtn.classList.remove("active"); micBtn.disabled = true; }
-  // resume background music
+  const mb = document.getElementById("micBtn");
+  if (mb) { mb.textContent = "✅ Candles blown!"; mb.classList.remove("active"); mb.disabled = true; }
   if (music && music.paused) music.play().catch(() => {});
 }
 
-async function startMic() {
-  try {
-    micStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const source = audioCtx.createMediaStreamSource(micStream);
-    analyser = audioCtx.createAnalyser();
-    analyser.fftSize = 512;
-    source.connect(analyser);
-    micActive = true;
-    if (micBtn) { micBtn.textContent = "🎙️ Listening… blow gently!"; micBtn.classList.add("active"); }
-    // pause music so it doesn't trigger candles
-    if (music && !music.paused) music.pause();
-    detectBlow();
-  } catch (err) {
-    if (micBtn) { micBtn.textContent = "🕯️ Mic blocked — tap the flames instead"; micBtn.disabled = true; }
-  }
-}
-
+/* ── Mic: blow detection loop ─────────────────────────────────── */
 function detectBlow() {
   if (!micActive || !analyser) return;
   const data = new Uint8Array(analyser.frequencyBinCount);
   analyser.getByteFrequencyData(data);
   const avg = data.reduce((a, b) => a + b, 0) / data.length;
 
-  if (avg > 18) {
+  if (avg > 16) {
     if (!blowTimer) {
       blowTimer = setTimeout(() => {
         blowTimer = null;
         if (micActive) blowOutNext();
-      }, 260); // must sustain for 260ms — filters pops/clicks
+      }, 240);
     }
   } else {
     clearTimeout(blowTimer);
     blowTimer = null;
   }
-
   if (micActive) requestAnimationFrame(detectBlow);
 }
 
+/* ── Mic: start ───────────────────────────────────────────────── */
+async function startMic() {
+  const mb = document.getElementById("micBtn");
+  try {
+    micStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+    audioCtx  = new (window.AudioContext || window.webkitAudioContext)();
+    const src = audioCtx.createMediaStreamSource(micStream);
+    analyser  = audioCtx.createAnalyser();
+    analyser.fftSize = 512;
+    src.connect(analyser);
+    micActive = true;
+    if (mb) { mb.textContent = "🎙️ Listening… blow gently!"; mb.classList.add("active"); }
+    if (music && !music.paused) music.pause();
+    detectBlow();
+  } catch (err) {
+    if (mb) { mb.textContent = "🕯️ Mic blocked — tap the flames instead"; mb.disabled = true; }
+  }
+}
+
+const micBtn = document.getElementById("micBtn");
 if (micBtn) {
-  micBtn.addEventListener("click", () => {
-    if (!micActive) startMic();
-  });
+  micBtn.addEventListener("click", () => { if (!micActive) startMic(); });
 }
 
 /* ── Voiceover toggle ─────────────────────────────────────────── */
-const voiceoverAudio = document.getElementById("voiceoverAudio");
+const voiceoverAudio  = document.getElementById("voiceoverAudio");
 const voiceoverButton = document.getElementById("voiceoverButton");
 if (voiceoverButton && voiceoverAudio) {
-  voiceoverButton.classList.add("vo-off");
   voiceoverButton.addEventListener("click", async () => {
     if (voiceoverAudio.paused) {
-      voiceoverAudio.volume = 0.8;
+      voiceoverAudio.volume = 0.85;
       await voiceoverAudio.play().catch(() => {});
-      voiceoverButton.classList.replace("vo-off", "vo-on");
-      voiceoverButton.title = "Voiceover ON";
+      voiceoverButton.textContent = "🔇";
+      voiceoverButton.title = "Voiceover ON — click to stop";
     } else {
       voiceoverAudio.pause();
-      voiceoverButton.classList.replace("vo-on", "vo-off");
-      voiceoverButton.title = "Voiceover OFF";
+      voiceoverButton.textContent = "🔊";
+      voiceoverButton.title = "Voiceover OFF — click to play";
     }
   });
 }
+
+if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+  document.documentElement.classList.add("reduce-motion");
