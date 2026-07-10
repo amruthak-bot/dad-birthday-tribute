@@ -1,50 +1,58 @@
 const chapters = [
   {
     number: "01", title: "Where our story began", subtitle: "ನಮ್ಮ ಮನೆಯ ಬೇರುಗಳು",
-    text: "Before we understood the world, we understood your hand holding ours. These are the photographs that carry the warmth of home.",
+    text: "From tiny daughters sitting beside you to the girls we are today—you have been there in every version of us.",
     photos: [
       ["IMG20180413220212.jpg", "ನಮ್ಮ ಪುಟ್ಟ ಜಗತ್ತಿನ ದೊಡ್ಡ ಹೀರೋ"],
       ["IMG_20210709_222511_1.png", "ಅಪ್ಪನ ಮಡಿಲಲ್ಲಿ ಯಾವಾಗಲೂ ನೆಮ್ಮದಿ"],
       ["IMG20210908224142.jpg", "ನಮ್ಮ ನಗುವಿಗೆ ಕಾರಣ ನೀವೇ"],
       ["IMG20220228193151.jpg", "ವಯಸ್ಸು ಎಷ್ಟೇ ಆದರೂ ಅಪ್ಪನಿಗೆ ಮಗಳು ಪುಟ್ಟವಳೇ"],
       ["IMG20220420202431.jpg", "ನನ್ನ ಮೊದಲ ಸ್ನೇಹಿತ, ನನ್ನ forever hero"],
-      ["IMG20230218153934.jpg", "ಒಟ್ಟಿಗಿದ್ದರೆ ಪ್ರತಿಯೊಂದು ಪ್ರಯಾಣವೂ ಸುಂದರ"]
+      ["IMG_20230116_174750_814.jpg", "ನಮ್ಮ ಜೊತೆ ನೀವು ಕೂಡ ಮಗುವಾಗುವ ಕ್ಷಣಗಳು best"],
+      ["IMG_20211230_155702.jpg", "ಅಪ್ಪ–ಅಮ್ಮ ಜೊತೆ ಇದ್ದರೆ ಅದೇ ನಮ್ಮ happiest place"],
+      ["IMG_20220807_133438.jpg", "ನಮ್ಮ ಮನೆಯ sweetest pair ♡"]
     ]
   },
   {
     number: "02", title: "The love that built our home", subtitle: "ಅಪ್ಪ–ಅಮ್ಮ, ನಮ್ಮ ಮನೆಯ ಹೃದಯ",
-    text: "In your partnership we learned that love is laughter, patience, friendship and standing beside one another through every season.",
+    text: "Your love with Amma is in the small things—the teasing, the smiles, the arguments and always choosing each other again.",
     photos: [
       ["20241103_205203(0).jpg", "ಒಟ್ಟಿಗಿರುವ ನಗು—ನಮ್ಮ ಮನೆಯ ಸೌಂದರ್ಯ"],
       ["20250211_133944.jpg", "ನಿಮ್ಮ ಜೊತೆ ಪ್ರತಿಯೊಂದು ದಿನವೂ ಒಂದು ಹೊಸ ನೆನಪು"],
       ["20250817_174411.jpg", "ಪ್ರೀತಿ ಎಂದರೆ ಹೀಗೆ—ಸರಳವಾಗಿ, ಸದಾ ಜೊತೆಗಿದ್ದು"],
       ["IMG20250907115444.jpg", "ನಮ್ಮ ಮನೆಯ sweetest love story"],
       ["IMG_20260416_223353913.jpg", "ಮಾತಿಗಿಂತ ಕಣ್ಣಲ್ಲೇ ಹೆಚ್ಚು ಪ್ರೀತಿ"],
-      ["1730432213234.jpg", "ಬೆಳಕಿನ ಹಬ್ಬಕ್ಕಿಂತ ನಿಮ್ಮಿಬ್ಬರ ನಗು ಹೆಚ್ಚು ಪ್ರಕಾಶಮಾನ"]
+      ["1730432213234.jpg", "ಬೆಳಕಿನ ಹಬ್ಬಕ್ಕಿಂತ ನಿಮ್ಮಿಬ್ಬರ ನಗು ಹೆಚ್ಚು ಪ್ರಕಾಶಮಾನ"],
+      ["20250214_225914.jpg", "ಒಬ್ಬರ ಕೈ ಇನ್ನೊಬ್ಬರು ಹಿಡಿದರೆ ಎಲ್ಲವೂ easy"],
+      ["IMG20250817202319_01.jpg", "ನಿಮ್ಮಿಬ್ಬರ love story ನಮಗೆ ತುಂಬಾ special ♡"]
     ]
   },
   {
     number: "03", title: "Celebrations, chaos & us", subtitle: "ನಮ್ಮ ಕುಟುಂಬ, ನಮ್ಮ ಸಂತೋಷ",
-    text: "Birthdays, weddings, festivals and wonderfully ordinary evenings—the best part was never the occasion. It was that we were together.",
+    text: "We never need a big occasion. If you, Amma and both of us are together, even an ordinary day becomes a memory.",
     photos: [
       ["1737611304331.jpg", "ಕುಟುಂಬವೇ ನಿಮ್ಮ ದೊಡ್ಡ ಸಂಪತ್ತು"],
       ["20241116_193205.jpg", "ನಮ್ಮ ಸಂಭ್ರಮಕ್ಕೆ ನಿಮ್ಮ ನಗುವೇ ಪೂರ್ಣತೆ"],
       ["20241222_175440.jpg", "ಸಂತೋಷವನ್ನು ಹಂಚಿಕೊಂಡಷ್ಟು ಅದು ಹೆಚ್ಚಾಗುತ್ತದೆ"],
       ["20250316_105550.jpg", "One frame, a hundred happy stories"],
       ["IMG20250114120757.jpg", "ನಮ್ಮ ಜೊತೆಗಿರುವ ಪ್ರತಿಕ್ಷಣವೂ ಅಮೂಲ್ಯ"],
-      ["IMG_20260430_210958645.jpg", "ನಿಮ್ಮ ಪಕ್ಕದಲ್ಲಿ ನಾವು ಯಾವಾಗಲೂ ಮಕ್ಕಳೇ"]
+      ["IMG_20260430_210958645.jpg", "ನಿಮ್ಮ ಪಕ್ಕದಲ್ಲಿ ನಾವು ಯಾವಾಗಲೂ ಮಕ್ಕಳೇ"],
+      ["20240413_212319.jpg", "Papa caught between too much daughter love!"],
+      ["20240413_212414.jpg", "ನಿಮ್ಮ birthday, ಆದರೆ happiness ನಮ್ಮದು ♡"]
     ]
   },
   {
     number: "04", title: "Miles, smiles & memories", subtitle: "ಒಟ್ಟಿಗೆ ನಡೆದ ಸುಂದರ ದಾರಿಗಳು",
-    text: "From waterfalls to mountain views, you gave us more than trips. You gave us time, stories and memories we will retell forever.",
+    text: "Every trip with you means photos, laughter, little fights, food stops and stories that we keep talking about long after coming home.",
     photos: [
       ["00001IMG_00001_BURST1780201364260_COVER.jpg", "ದಾರಿ ಯಾವುದೇ ಇರಲಿ, ನಿಮ್ಮ ಜೊತೆ ಇದ್ದರೆ ಸಾಕು"],
       ["IMG_20260530_111515421.jpg", "ಪ್ರಕೃತಿಯ ನಡುವೆ ನಮ್ಮ favourite people"],
       ["IMG_20260530_111955212.jpg", "ಈ ನಗುವೇ ನಮ್ಮ ಪ್ರಯಾಣದ best souvenir"],
       ["IMG_20260530_170946682.jpg", "Love, laughter and a view to remember"],
       ["IMG_20260531_101610557.jpg", "ಒಟ್ಟಿಗೆ ಕಂಡ ಪ್ರತಿಯೊಂದು ದೃಶ್ಯವೂ ವಿಶೇಷ"],
-      ["IMG_20260531_162501962.jpg", "ದೇವರ ಆಶೀರ್ವಾದದಂತೆ ನಿಮ್ಮ ನೆರಳು"]
+      ["IMG_20260531_162501962.jpg", "ದೇವರ ಆಶೀರ್ವಾದದಂತೆ ನಿಮ್ಮ ನೆರಳು"],
+      ["IMG_20260530_170900048.jpg", "Papa’s pose + Amma’s smile = perfect photo"],
+      ["IMG_20260530_143702337.jpg", "Our Coorg gang, with our favourite man ♡"]
     ]
   }
 ];
